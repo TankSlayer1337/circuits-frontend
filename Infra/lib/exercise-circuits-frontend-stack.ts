@@ -18,7 +18,6 @@ export class ExerciseCircuitsFrontendStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: ExerciseCircuitsFrontendStackProps) {
     super(scope, id, props);
     
-    const projectName = props.envConfig.projectName;
     const stage = props.envConfig.stage;
     const apexDomain = 'cloudchaotic.com';
     const fullUrl = `${props.envConfig.stageSubDomain}.exercise-circuits.${apexDomain}`;
@@ -37,6 +36,7 @@ export class ExerciseCircuitsFrontendStack extends cdk.Stack {
       comment: `Origin Access Identity for exercise circuits ${stage}.`
     });
     originAccessIdentity.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
+    websiteBucket.grantRead(originAccessIdentity);
 
     const distribution = new Distribution(this, 'Distribution', {
       defaultBehavior: {
@@ -58,7 +58,7 @@ export class ExerciseCircuitsFrontendStack extends cdk.Stack {
     });
 
     new BucketDeployment(this, 'BucketDeployment', {
-      sources: [Source.asset('/website-dist')],
+      sources: [Source.asset('../vite-project/dist')],
       destinationBucket: websiteBucket,
       distribution
     });
