@@ -7,7 +7,7 @@ export interface EnvironmentConfiguration {
     stageSubDomain: string
 }
 
-const stockholm: Environment = { region: 'eu-north-1' };
+const stockholm: Environment = { region: 'eu-north-1', account: process.env.CDK_DEFAULT_ACCOUNT };
 
 export const devConfiguration: EnvironmentConfiguration = {
     awsEnv: stockholm,

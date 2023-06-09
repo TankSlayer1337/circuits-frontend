@@ -10,12 +10,14 @@ environmentConfigurations.forEach(envConfig => {
   const env = envConfig.awsEnv;
   const globalResources = new ExerciseCircuitsFrontendGlobalResourcesStack(app, `${envConfig.projectName}-global-resources-${env.region}-${envConfig.stage}`, {
     envConfig: envConfig,
-    env: { region: 'us-east-1' }
+    env: { region: 'us-east-1', account: process.env.CDK_DEFAULT_ACCOUNT },
+    crossRegionReferences : true
   });
 
   new ExerciseCircuitsFrontendStack(app, `${envConfig.projectName}-${env.region}-${envConfig.stage}`, {
     envConfig: envConfig,
     env: env,
-    certificate: globalResources.certificate
+    certificate: globalResources.certificate,
+    crossRegionReferences: true
   });
 })
