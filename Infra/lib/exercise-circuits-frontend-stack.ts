@@ -58,7 +58,7 @@ export class ExerciseCircuitsFrontendStack extends cdk.Stack {
     });
 
     new BucketDeployment(this, 'BucketDeployment', {
-      sources: [Source.asset('../vite-project/dist')],
+      sources: [Source.asset('../vite-react-app/dist')],
       destinationBucket: websiteBucket,
       distribution
     });
