@@ -11,10 +11,10 @@ const configuration = {
       // identityPoolRegion: "XX-XXXX-X",
   
       // OPTIONAL - Amazon Cognito User Pool ID
-      userPoolId: "eu-north-1_wo9rtBDAL",
+      userPoolId: "eu-north-1_mnJDQbU6N",
   
       // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-      userPoolWebClientId: "5aa5tjjjitupmuk8u1m4puumbd",
+      userPoolWebClientId: "7ritq5lcif2dct9fvsaqmovaa",
   
       // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
       mandatorySignIn: false,
@@ -27,7 +27,7 @@ const configuration = {
       // Note: if the secure flag is set to true, then the cookie transmission requires a secure protocol
       cookieStorage: {
         // REQUIRED - Cookie domain (only required if cookieStorage is provided)
-        domain: ".cloudchaotic.com",
+        domain: ".exercise-circuits.cloudchaotic.com",
         // OPTIONAL - Cookie path
         path: "/",
         // OPTIONAL - Cookie expiration in days
@@ -50,18 +50,12 @@ const configuration = {
   
       // OPTIONAL - Hosted UI configuration
       oauth: {
-        domain: "cloudchaotic.auth.eu-north-1.amazoncognito.com",
         scope: [
-          "phone",
           "email",
-          // "profile",
+          "profile",
           "openid",
-          // "aws.cognito.signin.user.admin",
-          "https://quotes.api.cloudchaotic.com/quote.read",
-          "https://quotes.api.cloudchaotic.com/quote.write"
+          "https://dev.exercise-circuits.api.cloudchaotic.com/*"
         ],
-        redirectSignIn: "http://localhost:5173,https://www.cloudchaotic.com",
-        redirectSignOut: "http://localhost:5173,https://www.cloudchaotic.com",
         responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
       },
     },
