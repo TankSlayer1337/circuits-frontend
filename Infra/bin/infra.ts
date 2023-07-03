@@ -4,6 +4,7 @@ import * as cdk from 'aws-cdk-lib';
 import { ExerciseCircuitsFrontendStack } from '../lib/exercise-circuits-frontend-stack';
 import { ExerciseCircuitsFrontendGlobalResourcesStack } from '../lib/global-resources-stack';
 import { environmentConfigurations } from '../lib/environment-configurations';
+import { PipelineStack } from '../lib/pipeline-stack';
 
 const app = new cdk.App();
 environmentConfigurations.forEach(envConfig => {
@@ -19,5 +20,9 @@ environmentConfigurations.forEach(envConfig => {
     env: env,
     certificate: globalResources.certificate,
     crossRegionReferences: true
+  });
+
+  new PipelineStack(app, `${envConfig.projectName}-pipeline-${env.region}-${envConfig.stage}`, {
+    env: env
   });
 })
