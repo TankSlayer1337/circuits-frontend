@@ -1,14 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import * as React from "react";
+import { createRoot } from "react-dom/client";
 
-import { configureAmplify } from './amplify-configuration-provider';
+import "./index.css";
+
+import App from "./App";
+
+import { configureAmplify } from "./amplify-configuration-provider";
 
 configureAmplify();
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
