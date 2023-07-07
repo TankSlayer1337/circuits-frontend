@@ -4,10 +4,16 @@ import * as cdk from 'aws-cdk-lib';
 import { ExerciseCircuitsFrontendStack } from '../lib/exercise-circuits-frontend-stack';
 import { ExerciseCircuitsFrontendGlobalResourcesStack } from '../lib/global-resources-stack';
 import { environmentConfigurations } from '../lib/environment-configurations';
+import { PipelineDependenciesStack } from '../lib/pipeline-dependencies-stack';
 
 const app = new cdk.App();
 environmentConfigurations.forEach(envConfig => {
   const env = envConfig.awsEnv;
+
+  new PipelineDependenciesStack(app, `${envConfig.projectName}-pipeline-dependencies-${env.region}-${envConfig.stage}`, {
+    env: env
+  });
+
   const globalResources = new ExerciseCircuitsFrontendGlobalResourcesStack(app, `${envConfig.projectName}-global-resources-${env.region}-${envConfig.stage}`, {
     envConfig: envConfig,
     env: { region: 'us-east-1', account: process.env.CDK_DEFAULT_ACCOUNT },
