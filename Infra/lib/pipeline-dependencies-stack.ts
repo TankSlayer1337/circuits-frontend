@@ -29,11 +29,9 @@ export class PipelineDependenciesStack extends cdk.Stack {
 
     const githubDeployRole = new Role(this, 'GitHubDeployRole', {
       assumedBy: new OpenIdConnectPrincipal(oidcProvider, {
-        'Condition': {
-          'StringEquals': {
-            'token.actions.githubusercontent.com:sub': 'repo:TankSlayer1337/circuits-frontend:*',
-            'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com'
-          }
+        'StringEquals': {
+          'token.actions.githubusercontent.com:sub': 'repo:TankSlayer1337/circuits-frontend:*',
+          'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com'
         }
       })
     });
