@@ -20,7 +20,9 @@ export class ExerciseCircuitsFrontendStack extends cdk.Stack {
     
     const stage = props.envConfig.stage;
     const apexDomain = 'cloudchaotic.com';
-    const fullUrl = `${props.envConfig.stageSubDomain}.exercise-circuits.${apexDomain}`;
+    const applicationName = 'exercise-circuits';
+    const applicationUrl = `${applicationName}.${apexDomain}`;
+    const fullUrl = props.envConfig.useStageSubDomain ? `${stage}.${applicationUrl}` : applicationUrl;
 
     const websiteBucket = new Bucket(this, 'WebsiteOriginBucket', {
       enforceSSL: true,
@@ -52,7 +54,7 @@ export class ExerciseCircuitsFrontendStack extends cdk.Stack {
 
     new ARecord(this, 'CloudFrontARecord', {
       zone: hostedZone,
-      recordName: `${props.envConfig.stageSubDomain}.exercise-circuits`,
+      recordName: props.envConfig.useStageSubDomain ? `${stage}.${applicationName}` : applicationName,
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
       ttl: cdk.Duration.seconds(0)  // TODO: reset to default?
     });
