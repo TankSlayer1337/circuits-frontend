@@ -39,5 +39,5 @@ jobs:
         run: |
           cd Infra
           npm i
-          cdk deploy exercise-circuits-frontend-global-resources-eu-north-1-dev
-          cdk deploy exercise-circuits-frontend-eu-north-1-dev
+          cdk deploy exercise-circuits-frontend-global-resources-eu-north-1-dev --region eu-north-1
+          cdk deploy exercise-circuits-frontend-eu-north-1-dev --region eu-north-1
