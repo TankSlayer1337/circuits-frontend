@@ -2,7 +2,9 @@ name: Deploy Dev
 
 on:
   push:
-    branches: [ feature/* ]
+    branches: [ main, feature/* ]
+  pull_request:
+    branches: [ main ]
 
 env:  
   AWS_REGION : "eu-north-1"
