@@ -24,7 +24,7 @@ export class ExerciseCircuitsFrontendGlobalResourcesStack extends cdk.Stack {
 
     this.certificate = new Certificate(this, 'Certificate', {
       certificateName: `${projectName}-certificate-${this.region}-${stage}`,
-      domainName: `${props.envConfig.stageSubDomain}.exercise-circuits.${apexDomain}`,
+      domainName: props.envConfig.useStageSubDomain ? `${stage}.exercise-circuits.${apexDomain}` : `exercise-circuits.${apexDomain}`,
       validation: CertificateValidation.fromDns(hostedZone)
     });
     this.certificate.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);

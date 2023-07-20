@@ -6,8 +6,10 @@ import { ExerciseCircuitsFrontendGlobalResourcesStack } from '../lib/global-reso
 import { environmentConfigurations } from '../lib/environment-configurations';
 
 const app = new cdk.App();
+
 environmentConfigurations.forEach(envConfig => {
   const env = envConfig.awsEnv;
+
   const globalResources = new ExerciseCircuitsFrontendGlobalResourcesStack(app, `${envConfig.projectName}-global-resources-${env.region}-${envConfig.stage}`, {
     envConfig: envConfig,
     env: { region: 'us-east-1', account: process.env.CDK_DEFAULT_ACCOUNT },
