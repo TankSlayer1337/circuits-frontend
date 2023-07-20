@@ -27,6 +27,14 @@ export function configureAmplify(): void {
         redirect = 'https://dev.exercise-circuits.cloudchaotic.com';
         cognitoDomain = devCognitoDomain;
         break;
+      case 'staging':
+        redirect = 'https://staging.exercise-circuits.cloudchaotic.com';
+        cognitoDomain = 'exercise-circuits-staging.auth.eu-north-1.amazoncognito.com';
+        break;
+      case 'prod':
+        redirect = 'https://exercise-circuits.cloudchaotic.com';
+        cognitoDomain = 'exercise-circuits-prod.auth.eu-north-1.amazoncognito.com';
+        break;
       default:
         throw new Error('Invalid subdomain!');
     }
