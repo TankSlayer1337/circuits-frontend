@@ -44,5 +44,5 @@ jobs:
         run: |
           cd Infra
           npm i
-          cdk deploy exercise-circuits-frontend-global-resources-eu-north-1-${{ inputs.target-env }} --region ${{ env.AWS_REGION }}
-          cdk deploy exercise-circuits-frontend-eu-north-1-${{ inputs.target-env }} --region ${{ env.AWS_REGION }}
+          cdk deploy exercise-circuits-frontend-global-resources-eu-north-1-${{ inputs.target-env }} --region ${{ env.AWS_REGION }} --require-approval never
+          cdk deploy exercise-circuits-frontend-eu-north-1-${{ inputs.target-env }} --region ${{ env.AWS_REGION }} --require-approval never
