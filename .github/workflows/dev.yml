@@ -1,0 +1,11 @@
+name: Deploy Dev
+
+on:
+  push:
+    branches: [ main, feature/*]
+
+jobs:
+  deploy-dev:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      target-env: dev
