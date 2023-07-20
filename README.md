@@ -14,5 +14,5 @@ Pushing to main will trigger a deployment to the staging environment.
 https://staging.exercise-circuits.cloudchaotic.com/
 
 ### Prod
-Pushing to a branch starting with "release/" will trigger a deployment to the prod environment.
+Publishing a new release will trigger a deployment to the prod environment.
 https://exercise-circuits.cloudchaotic.com/
