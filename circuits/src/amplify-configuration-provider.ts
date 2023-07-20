@@ -31,7 +31,7 @@ export function configureAmplify(): void {
         redirect = 'https://staging.exercise-circuits.cloudchaotic.com';
         cognitoDomain = 'exercise-circuits-staging.auth.eu-north-1.amazoncognito.com';
         break;
-      case 'prod':
+      case 'exercise-circuits':
         redirect = 'https://exercise-circuits.cloudchaotic.com';
         cognitoDomain = 'exercise-circuits-prod.auth.eu-north-1.amazoncognito.com';
         break;
