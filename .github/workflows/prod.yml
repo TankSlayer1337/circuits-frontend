@@ -1,8 +1,8 @@
 name: Deploy Prod
 
 on:
-  push:
-    branches: [ release/* ]
+  release:
+    types: [ released ]
 
 permissions:
   id-token: write   # This is required for requesting the JWT
