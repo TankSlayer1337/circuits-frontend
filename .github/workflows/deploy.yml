@@ -17,6 +17,7 @@ jobs:
   cdk-deploy:
     runs-on: ubuntu-latest
     environment: ${{ inputs.target-env }}
+    concurrency: ${{ inputs.target-env }}
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
