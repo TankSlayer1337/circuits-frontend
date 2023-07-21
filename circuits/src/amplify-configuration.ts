@@ -50,12 +50,6 @@ const configuration = {
   
       // OPTIONAL - Hosted UI configuration
       oauth: {
-        scope: [
-          "email",
-          "profile",
-          "openid",
-          "https://dev.exercise-circuits.api.cloudchaotic.com/*"
-        ],
         responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
       },
     },
