@@ -2,7 +2,7 @@ name: Deploy Dev
 
 on:
   push:
-    branches: [ main, feature/* ]
+    branches: [ main, feature/*, defect/* ]
 
 permissions:
   id-token: write   # This is required for requesting the JWT

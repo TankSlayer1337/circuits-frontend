@@ -15,25 +15,30 @@ export function configureAmplify(): void {
 
   let redirect: string;
   let cognitoDomain: string;
+  let apiScope: string;
   const hostname = window.location.hostname;
   const devCognitoDomain = 'exercise-circuits-dev.auth.eu-north-1.amazoncognito.com';
   if (isLocalhost) {
     redirect = 'http://localhost:5173';
     cognitoDomain = devCognitoDomain;
+    apiScope = getApiScope('dev');
   } else {
     const subdomain = hostname.split('.')[0];
     switch (subdomain) {
       case 'dev':
         redirect = 'https://dev.exercise-circuits.cloudchaotic.com';
         cognitoDomain = devCognitoDomain;
+        apiScope = getApiScope('dev');
         break;
       case 'staging':
         redirect = 'https://staging.exercise-circuits.cloudchaotic.com';
         cognitoDomain = 'exercise-circuits-staging.auth.eu-north-1.amazoncognito.com';
+        apiScope = getApiScope('staging');
         break;
       case 'exercise-circuits':
         redirect = 'https://exercise-circuits.cloudchaotic.com';
         cognitoDomain = 'exercise-circuits-prod.auth.eu-north-1.amazoncognito.com';
+        apiScope = getApiScope('prod');
         break;
       default:
         throw new Error('Invalid subdomain!');
@@ -50,6 +55,12 @@ export function configureAmplify(): void {
     },
     oauth: {
       ...configuration.Auth.oauth,
+      scope: [
+        'email',
+        'profile',
+        'openid',
+        apiScope
+      ],
       domain: cognitoDomain,
       redirectSignIn: redirect,
       redirectSignOut: redirect,
@@ -57,4 +68,8 @@ export function configureAmplify(): void {
   }
 
   Amplify.configure(updatedAwsConfig);
+}
+
+function getApiScope(stage: string): string {
+  return `https://${stage}.exercise-circuits.api.cloudchaotic.com/*`;
 }
